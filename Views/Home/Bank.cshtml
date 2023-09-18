@@ -1,0 +1,51 @@
+﻿
+@model IEnumerable<CCWebApp.Models.Bank>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List Bank</title>
+</head>
+<body>
+    <h1>BANK</h1>
+    <table class="table table-striped" id="bankTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BankId)
+                </th>
+                <th> Bank Name </th>
+                <th> Bank Alias </th>
+                <th> Bank Code </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.BankId
+                    </td>
+                    <td>
+                        @item.BankName
+                    </td>
+                    <td>
+                        @item.BankAlias
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BankCode)
+                    </td>
+                    @*<td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+   
+</body>
+</html>

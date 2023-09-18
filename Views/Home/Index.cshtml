@@ -1,0 +1,69 @@
+﻿
+@model IEnumerable<CCWebApp.Models.Account>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List Account</title>
+</head>
+<body>
+    <h1>ACCOUNT</h1>
+    <table class="table table-hover table-striped" id="accountTable">
+        <thead>
+            <tr>
+                <th> @Html.DisplayNameFor(model => model.AccountId) </th>
+                <th> Customer </th>
+                <th> Account Number </th>
+                <th> Card Number </th>
+                <th> Bank</th>
+                <th> Credit Limit </th>
+                <th> Interest Rate </th>
+                <th>@Html.DisplayNameFor(model => model.Balance)</th>
+                <th> Payment Due Date </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccountId)
+                    </td>
+                    <td>
+                        @item.CustomerID - @item.CustomerName
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccountNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CardNo)
+                    </td>
+                    <td>
+                        @item.BankID - @item.BankName
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreditLimit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InterestRate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Balance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentDueDate)
+                    </td>
+                    @*<td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+   
+</body>
+</html>

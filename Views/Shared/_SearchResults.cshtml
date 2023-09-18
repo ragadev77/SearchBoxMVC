@@ -1,0 +1,34 @@
+﻿@using CCWebApp.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+}
+
+@* @model List<Account> *@
+@model IEnumerable<Account>
+<table class="table table-hover table-sm" id="resultTable">
+    <thead> 
+        <tr> 
+            <th>Acc.ID</th>
+            <th>Acc.Number</th>
+            <th>Card.Number</th>
+            <th>Bank</th>
+            <th>Balance</th> 
+            <th></th>
+        </tr> 
+    </thead> 
+    <tbody> @foreach (var account in Model)
+        {
+            
+            <tr>
+                <td>@account.AccountId</td>
+                <td>@Html.DisplayFor(modelItem => account.AccountNo)</td>
+                <td>@account.CardNo</td>
+                <td>@account.BankID - @account.BankName</td>
+                <td>@account.Balance</td>
+                <td><button class="alert-secondary" id="selected_@account.AccountId" type="button" value="@account.AccountNo" onclick="$('#accountNumber').val(this.value); $.get('@Url.Action("DoSearch", "Home")', { accountNumber: this.value }, function (data) { $('#searchResults').html(data);});">select</button></td>
+            </tr>
+        } 
+    </tbody> 
+</table>
+

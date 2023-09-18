@@ -1,0 +1,24 @@
+﻿@using CCWebApp.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+}
+
+@* @model List<Account> *@
+@if (Model.Any())
+{
+    foreach (var account in Model)
+    {
+        <tr>
+            <td>@account.AccountNo</td>
+            <td>@account.BankID</td>
+            <td>@account.Balance</td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="3">No accounts found</td>
+    </tr>
+}

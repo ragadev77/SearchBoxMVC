@@ -1,0 +1,42 @@
+﻿
+@using CCWebApp.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+
+<h2>Search Account</h2> 
+<form method="get" asp-action="Index">
+    <div class="form-group">
+        <label for="accountNumber">Account Number:</label> 
+        <input type="text" id="accountNumber" name="accountNumber" class="form-control" placeholder="Enter min 5 digit account number" />
+    </div>
+    <!-- Add a div that will display the search results -->
+    <div id="searchResults"><p></p></div>
+</form>
+
+
+@section scripts{  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script> 
+    <script>
+        $(function () {
+            // Attach an event listener to the input field
+            $('#accountNumber').on('keyup', function () {
+                // Get the search term value
+                var searchTerm = $(this).val();
+                // If the search term has 5 digits, make a search request
+                if (searchTerm.length >= 5) {
+                    console.log('equals or more than 5');
+                    $.get('@Url.Action("DoSearch", "Home")', { accountNumber: searchTerm }, function (data) {
+                        // Replace the search results div content with the returned partial view HTML
+                        $('#searchResults').html(data);
+                    });
+                }
+                else {
+                    console.log('less than 5');
+                    // If the search term has less or more than 5 digits, clear the search results div
+                    $('#searchResults').html('');
+                }
+            });
+            
+        });
+    </script> }

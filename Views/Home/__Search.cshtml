@@ -1,0 +1,83 @@
+﻿
+@using CCWebApp.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+
+<h2>Search by Account Number</h2>
+
+<form>
+    <div class="form-group">
+        <label for="accountNumberInput">Account Number:</label>
+        <input type="text" id="accountNumberInput" class="form-control" placeholder="Enter 5-digit account number" />
+    </div>
+</form>
+
+
+<table class="table" id="resultsTable" style="display:none;">
+  <thead>
+     <tr>
+       <th>Account Number</th>
+       <th>Bank ID</th>
+       <th>Balance</th>
+     </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+
+@section scripts{  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script> 
+    <script>
+
+        $(function () {
+            var $input = $('#accountNumberInput');
+            var $table = $('#resultsTable');
+            var $tableBody = $table.find('tbody');
+
+            $input.on('keyup', function () {
+                if ($input.val().length >= 5) {
+                    console.log = $input.val();
+                    var searchTerm = $input.val();
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Home/DoSearch?accountNumber=' + searchTerm,
+                        success: function (data) {
+                            $tableBody.html('');
+                            //console.log('data length:' + data.length.toString());
+                            if (data.length > 0) {
+                                $table.show
+                                $('#searchResults').html(data);
+
+                                $.each(data, function (index, account) {
+                                    var $row = $('<tr>').appendTo($tableBody);
+                                    $('<td>').text(account.accountNo).appendTo($row);
+                                    $('<td>').text(account.bankID).appendTo($row);
+                                    $('<td>').text(account.Balance).appendTo($row);
+
+                                    $row.on('click', function () {
+                                        $input.val(account.accountNo);
+                                        $table.hide();
+                                        $tableBody.html('');
+                                    });
+                                });
+                            } else {
+                                $table.hide();
+                            }
+                        },
+                        error: function () {
+                            $table.hide();
+                            $tableBody.html('');
+                        }
+                    });
+
+
+
+                } else {
+                    $table.hide();
+                }
+            });
+        });
+
+
+    </script> }
