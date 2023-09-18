@@ -5,11 +5,12 @@
 ## Installation
 To install this application, follow these steps:
 1. Generate SQL Scripts to create Tables and insert dummy data from file : **Scripts.sql**
-2. Clone the repository to your local machine using the command below:   
+2. Change connection string based on your DB Connection from file : **appsettings.json** 
+3. Clone the repository to your local machine using the command below:   
    `git clone https://github.com/ragadev77/SearchBoxMVC.git`
-3. Open SearchBoxMVC.sln or SearchBoxMVC.csproj using latest Visual Studio (2022 Recommended)
-4. Build Solution (Ctrl+shift+B) and start debugging (F5)   
-5. Running app without Visual Studio :		 
+4. Open SearchBoxMVC.sln or SearchBoxMVC.csproj using latest Visual Studio (2022 Recommended)
+5. Build Solution (Ctrl+shift+B) and start debugging (F5)   
+6. Running app without Visual Studio :		 
 * Open CMD : dotnet run --project CCWebApp.csproj
 * Copy URL to browser : https://localhost:8088 or http://localhost:5288
 * To Stop : Ctrl+C on cmd
